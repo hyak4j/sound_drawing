@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<!--    調色盤顏色-->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red">#F50808</color>
+    <color name="green">#28F508</color>
+    <color name="blue">#3F51B5</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="purple">#673AB7</color>
+    <color name="pink">#E91E63</color>
+
+<!--    背景色-->
+    <color name="gray">#F1F1F1</color>
+
+<!--    APP主題色-->
+    <color name="theme_blue">#00BCD4</color>
+    <color name="dark_theme_blue">#004D57</color>
 </resources>
