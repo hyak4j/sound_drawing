@@ -12,7 +12,6 @@ import android.view.View
 import com.hyak4j.sounddrawing.model.DrewPath
 
 class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
-    //    private val TAG: String = PaintView::class.java.simpleName
     private var brushSize: Int = 0   // 筆刷尺寸
     private var currentColor = Color.BLUE  // 畫筆顏色
     private val mPaint = Paint() // 畫筆設定
@@ -35,12 +34,10 @@ class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
         // 線條圓滑化
         mPaint.strokeCap = Paint.Cap.ROUND
         mPaint.strokeJoin = Paint.Join.ROUND
-//        Log.d(TAG, "init  width: $width, height: $height")
         mBitmapPaint.isDither = true
     }
 
     override fun onDraw(canvas: Canvas) {
-//        Log.d(TAG, "onDraw  width: $width, height: $height")
         if (!drawPrepare){
             mBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
             mBitmap.eraseColor(Color.WHITE) // 填充初始顏色
@@ -95,11 +92,6 @@ class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
     }
 
     private fun touchMove(x: Float, y: Float){
-        val pointPaint = Paint()
-        pointPaint.color = Color.BLUE
-        pointPaint.strokeWidth = 8f
-        mCanvas.drawPoint(x, y, pointPaint)
-
         mPath.quadTo(mbX, mbY, (mbX + x) / 2, (mbY + y) / 2)
         mbX = x
         mbY = y
