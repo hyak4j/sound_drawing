@@ -9,7 +9,10 @@ import android.graphics.Path
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import android.widget.ProgressBar
 import com.hyak4j.sounddrawing.model.DrewPath
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
     private var brushSize: Int = 0   // 筆刷尺寸
@@ -28,6 +31,9 @@ class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
     private var mbX = 0f
     private var mbY = 0f
 
+    private val  executor: ExecutorService = Executors.newSingleThreadExecutor()
+
+    private lateinit var progressBar: ProgressBar
     init {
         mPaint.isDither = true // 防抖動
         mPaint.style = Paint.Style.STROKE // 線條
@@ -99,5 +105,40 @@ class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
 
     private fun touchUp(){
         mPath.lineTo(mbX, mbY)
+    }
+
+    // 清除畫布
+    fun clear(){
+        executor.execute{
+            post {
+                // => main thread 顯示 ProgressBar
+                progressBar.visibility = VISIBLE
+            }
+            // 清除軌跡記錄
+            paths.clear()
+
+            // 將每個pixel改為白色 => 耗時
+            for (i in 0 until mBitmap.width){
+                for (j in 0 until mBitmap.height){
+                    mBitmap.setPixel(i, j, Color.WHITE)
+                }
+                post {
+                    // 在for loop分批清空每行，UI較流暢
+                    invalidate()
+                }
+            }
+
+            post {
+                progressBar.visibility = INVISIBLE
+            }
+//            postInvalidate()
+        }
+//        invalidate() => This must be called from a UI thread. To call from a non-UI thread, call postInvalidate().
+    }
+
+    // 傳入MainActivity ProgressBar
+    fun setProgressBar(mainBar: ProgressBar){
+        progressBar = mainBar
+        progressBar.visibility = INVISIBLE
     }
 }
