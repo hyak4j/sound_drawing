@@ -12,7 +12,7 @@ import android.view.View
 import com.hyak4j.sounddrawing.model.DrewPath
 
 class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
-//    private val TAG: String = PaintView::class.java.simpleName
+    //    private val TAG: String = PaintView::class.java.simpleName
     private var brushSize: Int = 0   // 筆刷尺寸
     private var currentColor = Color.BLUE  // 畫筆顏色
     private val mPaint = Paint() // 畫筆設定
@@ -25,9 +25,16 @@ class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
     private var drawPrepare = false // 記錄畫布初始化
     private var newPath = false    // 記錄是否為同一筆劃
 
+    // 線條曲線化 (貝茲曲線相關變數)
+    private var mbX = 0f
+    private var mbY = 0f
+
     init {
         mPaint.isDither = true // 防抖動
         mPaint.style = Paint.Style.STROKE // 線條
+        // 線條圓滑化
+        mPaint.strokeCap = Paint.Cap.ROUND
+        mPaint.strokeJoin = Paint.Join.ROUND
 //        Log.d(TAG, "init  width: $width, height: $height")
         mBitmapPaint.isDither = true
     }
@@ -66,9 +73,12 @@ class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
                 invalidate()
             }
             MotionEvent.ACTION_UP -> {
-                touchUp(x, y)
+                touchUp()
                 invalidate()
-                newPath = false
+                post {
+                    // 避免末端來不及畫線，只有點的狀況
+                    newPath = false
+                }
             }
         }
 
@@ -80,13 +90,22 @@ class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
         mPath = Path()
         paths.add(DrewPath(currentColor, brushSize, mPath))
         mPath.moveTo(x, y)  // 移至軌跡起點
+        mbX = x
+        mbY = y
     }
 
     private fun touchMove(x: Float, y: Float){
-        mPath.lineTo(x, y)
+        val pointPaint = Paint()
+        pointPaint.color = Color.BLUE
+        pointPaint.strokeWidth = 8f
+        mCanvas.drawPoint(x, y, pointPaint)
+
+        mPath.quadTo(mbX, mbY, (mbX + x) / 2, (mbY + y) / 2)
+        mbX = x
+        mbY = y
     }
 
-    private fun touchUp(x: Float, y: Float){
-        mPath.lineTo(x, y)
+    private fun touchUp(){
+        mPath.lineTo(mbX, mbY)
     }
 }
