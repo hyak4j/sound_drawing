@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">聲音繪圖</string>
+    <string name="btn_sound">發出聲控指令</string>
+    <string name="btn_save_image">保存圖片</string>
+    <string name="btn_load_image">載入圖片</string>
+    <string name="btn_clear">清除畫面</string>
+    <string name="btn_fill">填充模式</string>
+    <string name="btn_pen">畫筆模式</string>
+    <string name="btn_eraser">橡皮擦</string>
+</resources>

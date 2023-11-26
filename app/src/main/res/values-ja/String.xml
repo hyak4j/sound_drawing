@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">サウンドドローイング</string>
+    <string name="btn_sound">音声コマンドを発行する</string>
+    <string name="btn_save_image">画像を保存する</string>
+    <string name="btn_load_image">画像のロード</string>
+    <string name="btn_clear">クリアスクリーン</string>
+    <string name="btn_fill">フィルモード</string>
+    <string name="btn_pen">ブラシモード</string>
+    <string name="btn_eraser">消しゴム</string>
+</resources>
