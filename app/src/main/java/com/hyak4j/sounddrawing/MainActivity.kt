@@ -22,5 +22,10 @@ class MainActivity : AppCompatActivity() {
         binding.btnClear.setOnClickListener {
             binding.paintView.clear()
         }
+
+        // 填滿按鍵
+        binding.btnFill.setOnClickListener {
+            binding.paintView.changeMode(-1)
+        }
     }
 }
