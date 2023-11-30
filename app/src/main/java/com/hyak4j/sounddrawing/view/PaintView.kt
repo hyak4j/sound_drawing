@@ -46,6 +46,7 @@ class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
 
     private lateinit var progressBar: ProgressBar
     init {
+        mPaint.isAntiAlias = false // 預防填充線條，因抗鋸齒效果造成無填滿之狀況
         mPaint.isDither = true // 防抖動
         mPaint.style = Paint.Style.STROKE // 線條
         // 線條圓滑化
