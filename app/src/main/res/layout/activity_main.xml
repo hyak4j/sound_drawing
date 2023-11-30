@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCommand"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,14 +24,14 @@
         android:textSize="20sp"
         android:text="@string/btn_sound"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:text="@string/btn_save_image"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLoad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnClear"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -52,7 +52,7 @@
             android:text="@string/btn_clear"
             android:textSize="11sp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnFill"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -61,7 +61,7 @@
             android:text="@string/btn_fill"
             android:textSize="11sp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnPen"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -70,7 +70,7 @@
             android:text="@string/btn_pen"
             android:textSize="11sp" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEraser"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -90,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBlack"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -102,7 +102,7 @@
                 android:insetBottom="0dp"
                 android:backgroundTint="@color/black"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnWhite"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -114,7 +114,7 @@
                 android:insetBottom="0dp"
                 android:backgroundTint="@color/white"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRed"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -126,7 +126,7 @@
                 android:insetBottom="0dp"
                 android:backgroundTint="@color/red"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnGreen"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -138,7 +138,7 @@
                 android:insetBottom="0dp"
                 android:backgroundTint="@color/green"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBlue"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -150,7 +150,7 @@
                 android:insetBottom="0dp"
                 android:backgroundTint="@color/blue"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnYellow"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -162,7 +162,7 @@
                 android:insetBottom="0dp"
                 android:backgroundTint="@color/yellow"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPurple"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -174,7 +174,7 @@
                 android:insetBottom="0dp"
                 android:backgroundTint="@color/purple"/>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPink"
                 android:layout_width="50dp"
                 android:layout_height="50dp"

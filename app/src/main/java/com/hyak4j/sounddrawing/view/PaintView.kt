@@ -231,4 +231,9 @@ class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
     fun changeMode(wantedMode: Int){
         mode = wantedMode
     }
+
+    // 切換顏色
+    fun changeColor(color: Int, context: Context){
+        currentColor = context.getColor(color)
+    }
 }
