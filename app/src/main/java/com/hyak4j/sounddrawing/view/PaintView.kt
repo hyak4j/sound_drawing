@@ -78,7 +78,7 @@ class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
         val y = event.y
 
         when(event.action){
-            MotionEvent.ACTION_DOWN -> if (mode > 0){
+            MotionEvent.ACTION_DOWN -> if (mode >= 0){
                 newPath = true
                 touchStart(x, y)
                 invalidate()
@@ -91,13 +91,13 @@ class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
                 fillDrawing(mBitmap, fillPoint, sourceColor, targetColor)
             }
             MotionEvent.ACTION_MOVE -> {
-                if (mode > 0){
+                if (mode >= 0){
                     touchMove(x, y)
                     invalidate()
                 }
             }
             MotionEvent.ACTION_UP -> {
-                if (mode > 0){
+                if (mode >= 0){
                     touchUp()
                     invalidate()
                     post {
@@ -175,7 +175,7 @@ class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
     }
 
     private fun touchStart(x: Float, y: Float){
-        brushSize = 10
+        brushSize = if (mode == 0) 40 else 10
         mPath = Path()
         paths.add(DrewPath(currentColor, brushSize, mPath))
         mPath.moveTo(x, y)  // 移至軌跡起點
@@ -236,5 +236,10 @@ class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
     // 切換顏色
     fun changeColor(color: Int, context: Context){
         currentColor = context.getColor(color)
+    }
+
+    // 取得目前模式
+    fun getMode(): Int{
+        return mode
     }
 }

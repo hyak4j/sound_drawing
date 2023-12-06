@@ -12,7 +12,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var paintView: PaintView
     private lateinit var modeArray: Array<MaterialButton>
-    private lateinit var colorArray: Array<MaterialButton>
+    private lateinit var colorBtnArray: Array<MaterialButton>
+    private lateinit var colorArray: Array<Int>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,45 +52,32 @@ class MainActivity : AppCompatActivity() {
         binding.btnEraser.setOnClickListener {
             setModeButtonBorder(binding.btnEraser)
             paintView.changeMode(0)
-        }
-
-        // === 畫筆顏色相關 ===
-        colorArray = arrayOf(binding.btnBlack, binding.btnWhite, binding.btnRed, binding.btnGreen, binding.btnBlue,
-            binding.btnYellow, binding.btnPurple, binding.btnPink)
-
-        // 預設藍色
-        setColor(binding.btnBlue, R.color.blue)
-
-        binding.btnBlack.setOnClickListener {
-            setColor(binding.btnBlack, R.color.black)
-        }
-
-        binding.btnWhite.setOnClickListener {
+            paintView.changeColor(R.color.white, applicationContext)
             setColor(binding.btnWhite, R.color.white)
         }
 
-        binding.btnRed.setOnClickListener {
-            setColor(binding.btnRed, R.color.red)
-        }
+        // === 畫筆顏色相關 ===
+        colorBtnArray = arrayOf(binding.btnBlack, binding.btnWhite, binding.btnRed, binding.btnGreen, binding.btnBlue,
+            binding.btnYellow, binding.btnPurple, binding.btnPink)
 
-        binding.btnGreen.setOnClickListener {
-            setColor(binding.btnGreen, R.color.green)
-        }
+        colorArray = arrayOf(R.color.black, R.color.white, R.color.red, R.color.green, R.color.blue,
+            R.color.yellow, R.color.purple, R.color.pink)
 
-        binding.btnBlue.setOnClickListener {
-            setColor(binding.btnBlue, R.color.blue)
-        }
+        // 預設值: 畫筆模式、藍色
+        setModeButtonBorder(binding.btnPen)
+        paintView.changeMode(1)
+        setColor(binding.btnBlue, R.color.blue)
 
-        binding.btnYellow.setOnClickListener {
-            setColor(binding.btnYellow, R.color.yellow)
-        }
+        // 各顏色按鈕處理 (將各顏色重複程式碼簡化)
+        for (index in colorArray.indices){
+            colorBtnArray[index].setOnClickListener {
+                setColor(it as MaterialButton, colorArray[index])
 
-        binding.btnPurple.setOnClickListener {
-            setColor(binding.btnPurple, R.color.purple)
-        }
-
-        binding.btnPink.setOnClickListener {
-            setColor(binding.btnPink, R.color.pink)
+                if (paintView.getMode() == 0){
+                    setModeButtonBorder(binding.btnPen)
+                    paintView.changeMode(1)
+                }
+            }
         }
     }
 
@@ -107,7 +95,7 @@ class MainActivity : AppCompatActivity() {
 
     // 畫筆顏色選定UI顯示
     private fun setColor(colorButton: MaterialButton, color: Int){
-        for (colorBtn in colorArray){
+        for (colorBtn in colorBtnArray){
             // 清除
             colorBtn.strokeWidth = 0
         }
