@@ -7,4 +7,9 @@
     <string name="btn_fill">フィルモード</string>
     <string name="btn_pen">ブラシモード</string>
     <string name="btn_eraser">消しゴム</string>
+    <string name="txt_record_audio">録音</string>
+    <string name="txt_permission">権限</string>
+    <string name="txt_granted">提供された</string>
+    <string name="txt_record_failed">音声認識機能が提供できない</string>
+    <string name="txt_please_granted">関連する権限を付与してください</string>
 </resources>

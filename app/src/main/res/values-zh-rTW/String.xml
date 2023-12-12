@@ -7,4 +7,9 @@
     <string name="btn_fill">填充模式</string>
     <string name="btn_pen">畫筆模式</string>
     <string name="btn_eraser">橡皮擦</string>
+    <string name="txt_record_audio">錄音</string>
+    <string name="txt_permission">權限</string>
+    <string name="txt_granted">已提供</string>
+    <string name="txt_record_failed">無法提供聲音辨識功能</string>
+    <string name="txt_please_granted">請提供相關權限</string>
 </resources>

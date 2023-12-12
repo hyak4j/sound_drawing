@@ -7,4 +7,9 @@
     <string name="btn_fill">Fill Mode</string>
     <string name="btn_pen">Pen Mode</string>
     <string name="btn_eraser">Eraser Mode</string>
+    <string name="txt_record_audio">Recording</string>
+    <string name="txt_permission">Permission</string>
+    <string name="txt_granted">is Granted</string>
+    <string name="txt_record_failed">Unable to provide voice recognition function</string>
+    <string name="txt_please_granted">Please provide relevant permissions</string>
 </resources>

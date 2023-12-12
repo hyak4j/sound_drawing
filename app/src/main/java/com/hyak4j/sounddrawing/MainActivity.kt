@@ -1,13 +1,20 @@
 package com.hyak4j.sounddrawing
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import com.hyak4j.sounddrawing.databinding.ActivityMainBinding
 import com.hyak4j.sounddrawing.view.PaintView
 
 class MainActivity : AppCompatActivity() {
+    companion object{
+        private val RECORD_AUDIO_REQUEST = 10
+    }
     // viewBinding
     private lateinit var binding: ActivityMainBinding
     private lateinit var paintView: PaintView
@@ -34,6 +41,12 @@ class MainActivity : AppCompatActivity() {
         binding.btnClear.setOnClickListener {
             setModeButtonBorder(binding.btnClear)
             paintView.clear()
+        }
+
+        if (isRecordAudioGranted()){
+            // 錄音權限已允許
+            Toast.makeText(this, "${resources.getString(R.string.txt_record_audio)}${resources.getString(R.string.txt_permission)}${resources.getString(R.string.txt_granted)}", Toast.LENGTH_LONG).show()
+            // TODO:進行錄音相關工作
         }
 
         // 填滿按鍵
@@ -81,6 +94,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun isRecordAudioGranted(): Boolean {
+        return if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED){
+            true
+        }else{
+            requestPermissions(arrayOf(Manifest.permission.RECORD_AUDIO), RECORD_AUDIO_REQUEST)
+            false
+        }
+    }
+
     // 選定模式UI顯示
     private fun setModeButtonBorder(modeButton: MaterialButton){
         for (modeBtn in modeArray){
@@ -104,5 +127,25 @@ class MainActivity : AppCompatActivity() {
         colorButton.strokeColor = ColorStateList.valueOf(
             resources.getColor(R.color.theme_blue, null)
         )
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode){
+            RECORD_AUDIO_REQUEST -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    // TODO:進行錄音相關工作
+                }else{
+                    binding.txtCommand.text = resources.getString(R.string.txt_record_failed)
+                    binding.btnCommand.setOnClickListener {
+                        Toast.makeText(this, "${resources.getString(R.string.txt_record_failed)},${resources.getString(R.string.txt_please_granted)}", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+        }
     }
 }
