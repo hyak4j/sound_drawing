@@ -12,4 +12,20 @@
     <string name="txt_granted">提供された</string>
     <string name="txt_record_failed">音声認識機能が提供できない</string>
     <string name="txt_please_granted">関連する権限を付与してください</string>
+    <string name="txt_receive_sound">音声コマンドを受信して​​います…</string>
+    <string name="txt_error_recognize">音声認識エラー</string>
+    <string name="txt_result_sound">音声認識結果:</string>
+    <string name="txt_error_pen_fill_together">ブラシモードと塗りつぶしモードを同時に実行することはできません</string>
+    <string name="txt_error_multicolors">複数の色を同時に使用することはできません</string>
+    <string name="txt_clear">クリア</string>
+    <string name="txt_fill">充填</string>
+    <string name="txt_pen">みがきます</string>
+    <string name="txt_black">黒</string>
+    <string name="txt_white">白</string>
+    <string name="txt_red">赤</string>
+    <string name="txt_green">緑</string>
+    <string name="txt_blue">青</string>
+    <string name="txt_yellow">黄色</string>
+    <string name="txt_purple">紫</string>
+    <string name="txt_pink">ピンク</string>
 </resources>

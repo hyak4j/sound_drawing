@@ -12,4 +12,20 @@
     <string name="txt_granted">is Granted</string>
     <string name="txt_record_failed">Unable to provide voice recognition function</string>
     <string name="txt_please_granted">Please provide relevant permissions</string>
+    <string name="txt_receive_sound">Receiving Sound Commands…</string>
+    <string name="txt_error_recognize">Voice Recognition Error</string>
+    <string name="txt_result_sound">Voice Recognition Result:</string>
+    <string name="txt_error_pen_fill_together">Cannot execute brush and fill modes at the same time</string>
+    <string name="txt_error_multicolors">Can\'t use multiple colors at the same time</string>
+    <string name="txt_clear">clear</string>
+    <string name="txt_fill">filling</string>
+    <string name="txt_pen">pen</string>
+    <string name="txt_black">black</string>
+    <string name="txt_white">white</string>
+    <string name="txt_red">red</string>
+    <string name="txt_green">green</string>
+    <string name="txt_blue">blue</string>
+    <string name="txt_yellow">yellow</string>
+    <string name="txt_purple">purple</string>
+    <string name="txt_pink">pink</string>
 </resources>

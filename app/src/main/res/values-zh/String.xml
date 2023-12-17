@@ -12,4 +12,20 @@
     <string name="txt_granted">已提供</string>
     <string name="txt_record_failed">無法提供聲音辨識功能</string>
     <string name="txt_please_granted">請提供相關權限</string>
+    <string name="txt_receive_sound">正在接收聲音指令…</string>
+    <string name="txt_error_recognize">聲音辨識錯誤</string>
+    <string name="txt_result_sound">聲音辨識結果:</string>
+    <string name="txt_error_pen_fill_together">無法同時執行畫筆及填充模式</string>
+    <string name="txt_error_multicolors">無法同時使用多個顏色</string>
+    <string name="txt_clear">清除</string>
+    <string name="txt_fill">填充</string>
+    <string name="txt_pen">畫筆</string>
+    <string name="txt_black">黑色</string>
+    <string name="txt_white">白色</string>
+    <string name="txt_red">紅色</string>
+    <string name="txt_green">綠色</string>
+    <string name="txt_blue">藍色</string>
+    <string name="txt_yellow">黃色</string>
+    <string name="txt_purple">紫色</string>
+    <string name="txt_pink">粉紅色</string>
 </resources>
