@@ -235,7 +235,7 @@ class MainActivity : AppCompatActivity() {
             colorBtnArray[index].setOnClickListener {
                 setColor(it as MaterialButton, colorArray[index])
 
-                if (paintView.getMode() == 0){
+                if (paintView.getMode() == 0 ){
                     setModeButtonBorder(binding.btnPen)
                     paintView.changeMode(1)
                 }

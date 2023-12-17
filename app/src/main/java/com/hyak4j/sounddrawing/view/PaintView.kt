@@ -14,8 +14,7 @@ import android.widget.ProgressBar
 import com.hyak4j.sounddrawing.model.DrewPath
 import java.util.LinkedList
 import java.util.Queue
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
+import java.util.concurrent.locks.ReentrantLock
 
 class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
     /*
@@ -42,7 +41,10 @@ class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
     private var mbX = 0f
     private var mbY = 0f
 
-    private val  executor: ExecutorService = Executors.newSingleThreadExecutor()
+    // 單一線程 executor
+//    private val  executor: ExecutorService = Executors.newSingleThreadExecutor()
+
+    private val  lock: ReentrantLock = ReentrantLock()
 
     private lateinit var progressBar: ProgressBar
     init {
@@ -113,17 +115,46 @@ class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
 
     // 進行顏色填充
     private fun fillDrawing(bmp: Bitmap, fillPoint: Point, sourceColor: Int, targetColor: Int) {
-        executor.execute{
+        floodFillLock(bmp, fillPoint, sourceColor, targetColor)
+//        floodFillExecutor(bmp, fillPoint, sourceColor, targetColor)
+    }
+
+    private fun floodFillExecutor(
+        bmp: Bitmap,
+        fillPoint: Point,
+        sourceColor: Int,
+        targetColor: Int
+    ) {
+//        executor.execute {
+//            post {
+//                progressBar.visibility = VISIBLE
+//            }
+//
+//            floodFill(bmp, fillPoint, sourceColor, targetColor)
+//
+//            post {
+//                progressBar.visibility = INVISIBLE
+//            }
+//        }
+    }
+
+    private fun floodFillLock(
+        bmp: Bitmap,
+        fillPoint: Point,
+        sourceColor: Int,
+        targetColor: Int
+    ) {
+        Thread {
             post {
                 progressBar.visibility = VISIBLE
             }
-
+            lock.lock()
             floodFill(bmp, fillPoint, sourceColor, targetColor)
-
+            lock.unlock()
             post {
                 progressBar.visibility = INVISIBLE
             }
-        }
+        }.start()
     }
 
 
@@ -195,17 +226,48 @@ class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
 
     // 清除畫布
     fun clear(){
-        executor.execute{
+        clearLock()
+//        clearExecutor()
+    }
+
+    private fun clearExecutor() {
+//        executor.execute {
+//            post {
+//                // => main thread 顯示 ProgressBar
+//                progressBar.visibility = VISIBLE
+//            }
+//            // 清除軌跡記錄
+//            paths.clear()
+//
+//            // 將每個pixel改為白色 => 耗時
+//            for (i in 0 until mBitmap.width) {
+//                for (j in 0 until mBitmap.height) {
+//                    mBitmap.setPixel(i, j, Color.WHITE)
+//                }
+//                post {
+//                    // 在for loop分批清空每行，UI較流暢
+//                    invalidate()
+//                }
+//            }
+//
+//            post {
+//                progressBar.visibility = INVISIBLE
+//            }
+//    //            postInvalidate()
+//        }
+        //        invalidate() => This must be called from a UI thread. To call from a non-UI thread, call postInvalidate().
+    }
+
+    private fun clearLock() {
+        Thread {
             post {
-                // => main thread 顯示 ProgressBar
                 progressBar.visibility = VISIBLE
             }
             // 清除軌跡記錄
             paths.clear()
-
-            // 將每個pixel改為白色 => 耗時
-            for (i in 0 until mBitmap.width){
-                for (j in 0 until mBitmap.height){
+            lock.lock()
+            for (i in 0 until mBitmap.width) {
+                for (j in 0 until mBitmap.height) {
                     mBitmap.setPixel(i, j, Color.WHITE)
                 }
                 post {
@@ -213,13 +275,11 @@ class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
                     invalidate()
                 }
             }
-
+            lock.unlock()
             post {
                 progressBar.visibility = INVISIBLE
             }
-//            postInvalidate()
-        }
-//        invalidate() => This must be called from a UI thread. To call from a non-UI thread, call postInvalidate().
+        }.start()
     }
 
     // 傳入MainActivity ProgressBar
