@@ -81,7 +81,6 @@ class MainActivity : AppCompatActivity() {
                 when(commandString[i].lowercase()){
                     showString(R.string.btn_clear), showString(R.string.txt_clear) , "clear" -> {
                         // 包含清除指令時
-                        setModeButtonBorder(binding.btnClear)
                         paintView.clear()
                         return
                     }
@@ -200,7 +199,6 @@ class MainActivity : AppCompatActivity() {
         modeArray = arrayOf(binding.btnClear, binding.btnFill, binding.btnPen, binding.btnEraser)
         // 清除按鍵
         binding.btnClear.setOnClickListener {
-            setModeButtonBorder(binding.btnClear)
             paintView.clear()
         }
 
