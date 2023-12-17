@@ -28,4 +28,7 @@
     <string name="txt_yellow">黃色</string>
     <string name="txt_purple">紫色</string>
     <string name="txt_pink">粉紅色</string>
+    <string name="txt_save_image">圖片儲存成功</string>
+    <string name="txt_save_image_fail">圖片儲存失敗</string>
+    <string name="txt_load_image_fail">圖片讀取失敗</string>
 </resources>

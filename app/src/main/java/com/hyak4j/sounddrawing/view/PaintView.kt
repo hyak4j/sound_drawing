@@ -302,4 +302,16 @@ class PaintView(contex: Context, attrs: AttributeSet) : View(contex, attrs) {
     fun getMode(): Int{
         return mode
     }
+
+    // 取得目前在畫布上的Bitmap
+    fun getBitmap(): Bitmap{
+        return mBitmap
+    }
+
+    // 讀取圖片 => 畫在畫布上
+    fun loadBitmap(bitmap: Bitmap){
+        mBitmap = bitmap
+        mCanvas = Canvas(mBitmap)
+        invalidate()
+    }
 }

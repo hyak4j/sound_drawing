@@ -2,9 +2,12 @@ package com.hyak4j.sounddrawing
 
 import android.Manifest
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.ColorStateList
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import android.speech.RecognitionListener
@@ -17,6 +20,9 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import com.hyak4j.sounddrawing.databinding.ActivityMainBinding
 import com.hyak4j.sounddrawing.view.PaintView
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 
 class MainActivity : AppCompatActivity() {
     companion object{
@@ -240,6 +246,53 @@ class MainActivity : AppCompatActivity() {
                     paintView.changeMode(1)
                 }
             }
+        }
+
+        // 保存圖片
+        binding.btnSave.setOnClickListener {
+            saveToInternalStorage(paintView.getBitmap())
+        }
+
+        // 載入圖片
+        binding.btnLoad.setOnClickListener {
+            loadFromInternalSotrage()
+        }
+    }
+
+    private fun loadFromInternalSotrage() {
+        val contextWrapper = ContextWrapper(this)
+        // /data/user/0/com.hyak4j.sounddrawing/app_imageDir/sound_image.png
+        val directory = contextWrapper.getDir("imageDir", Context.MODE_PRIVATE)
+        val path = File(directory, "sound_image.png")
+        try {
+            if (path.exists()){
+                val bitmapImage = BitmapFactory.decodeStream(FileInputStream(path))
+                val mutableBitmap = bitmapImage.copy(Bitmap.Config.ARGB_8888, true)
+                paintView.loadBitmap(mutableBitmap)
+            }else {
+                Toast.makeText(applicationContext, R.string.txt_load_image_fail, Toast.LENGTH_LONG).show()
+            }
+        }catch (e: Exception){
+            e.printStackTrace()
+            Toast.makeText(applicationContext, "${R.string.txt_load_image_fail} ${e.printStackTrace().toString()}", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun saveToInternalStorage(bitmapImage: Bitmap) {
+        val contextWrapper = ContextWrapper(this)
+        // /data/user/0/com.hyak4j.sounddrawing/app_imageDir/sound_image.png
+        val directory = contextWrapper.getDir("imageDir", Context.MODE_PRIVATE)
+        val path = File(directory, "sound_image.png")
+        lateinit var fos: FileOutputStream
+        try {
+            fos= FileOutputStream(path)
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos)
+            Toast.makeText(applicationContext, R.string.txt_save_image, Toast.LENGTH_LONG).show()
+        }catch (e: Exception){
+            e.printStackTrace()
+            Toast.makeText(applicationContext, R.string.txt_save_image_fail, Toast.LENGTH_LONG).show()
+        }finally {
+            fos.close()
         }
     }
 

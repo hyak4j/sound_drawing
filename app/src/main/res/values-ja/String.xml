@@ -28,4 +28,7 @@
     <string name="txt_yellow">黄色</string>
     <string name="txt_purple">紫</string>
     <string name="txt_pink">ピンク</string>
+    <string name="txt_save_image">画像が正常に保存されました</string>
+    <string name="txt_save_image_fail">画像の保存に失敗しました</string>
+    <string name="txt_load_image_fail">画像の読み込みに失敗しました</string>
 </resources>

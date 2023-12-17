@@ -28,4 +28,7 @@
     <string name="txt_yellow">yellow</string>
     <string name="txt_purple">purple</string>
     <string name="txt_pink">pink</string>
+    <string name="txt_save_image">Image saved successfully</string>
+    <string name="txt_save_image_fail">Image saving failed</string>
+    <string name="txt_load_image_fail">Image loading failed</string>
 </resources>
