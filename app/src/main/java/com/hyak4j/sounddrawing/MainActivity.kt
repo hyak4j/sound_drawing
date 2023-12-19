@@ -17,6 +17,7 @@ import android.util.TypedValue
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.widget.NestedScrollView
 import com.google.android.material.button.MaterialButton
 import com.hyak4j.sounddrawing.databinding.ActivityMainBinding
 import com.hyak4j.sounddrawing.view.PaintView
@@ -119,10 +120,12 @@ class MainActivity : AppCompatActivity() {
                 // 確認顏色
                 when(colors[0]){
                     showString(R.string.txt_black), "black" -> {
+                        binding.scrollview.fullScroll(NestedScrollView.FOCUS_LEFT)
                         setColor(binding.btnBlack, R.color.black)
                         paintView.changeColor(R.color.black, context)
                     }
                     showString(R.string.txt_white), "white" -> {
+                        binding.scrollview.fullScroll(NestedScrollView.FOCUS_LEFT)
                         setColor(binding.btnWhite, R.color.white)
                         paintView.changeColor(R.color.white, context)
                     }
@@ -143,10 +146,12 @@ class MainActivity : AppCompatActivity() {
                         paintView.changeColor(R.color.yellow, context)
                     }
                     showString(R.string.txt_purple), "purple" -> {
+                        binding.scrollview.fullScroll(NestedScrollView.FOCUS_RIGHT)
                         setColor(binding.btnPurple, R.color.purple)
                         paintView.changeColor(R.color.purple, context)
                     }
                     showString(R.string.txt_pink), "pink" -> {
+                        binding.scrollview.fullScroll(NestedScrollView.FOCUS_RIGHT)
                         setColor(binding.btnPink, R.color.pink)
                         paintView.changeColor(R.color.pink, context)
                     }

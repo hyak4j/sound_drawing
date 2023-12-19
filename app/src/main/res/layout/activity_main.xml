@@ -82,109 +82,110 @@
     </LinearLayout>
 
     <HorizontalScrollView
+        android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBlack"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button.Circle"
+                android:backgroundTint="@color/black"
                 android:insetLeft="0dp"
-                android:insetRight="0dp"
                 android:insetTop="0dp"
+                android:insetRight="0dp"
                 android:insetBottom="0dp"
-                android:backgroundTint="@color/black"/>
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button.Circle" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnWhite"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button.Circle"
+                android:backgroundTint="@color/white"
                 android:insetLeft="0dp"
-                android:insetRight="0dp"
                 android:insetTop="0dp"
+                android:insetRight="0dp"
                 android:insetBottom="0dp"
-                android:backgroundTint="@color/white"/>
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button.Circle" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRed"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button.Circle"
+                android:backgroundTint="@color/red"
                 android:insetLeft="0dp"
-                android:insetRight="0dp"
                 android:insetTop="0dp"
+                android:insetRight="0dp"
                 android:insetBottom="0dp"
-                android:backgroundTint="@color/red"/>
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button.Circle" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnGreen"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button.Circle"
+                android:backgroundTint="@color/green"
                 android:insetLeft="0dp"
-                android:insetRight="0dp"
                 android:insetTop="0dp"
+                android:insetRight="0dp"
                 android:insetBottom="0dp"
-                android:backgroundTint="@color/green"/>
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button.Circle" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBlue"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button.Circle"
+                android:backgroundTint="@color/blue"
                 android:insetLeft="0dp"
-                android:insetRight="0dp"
                 android:insetTop="0dp"
+                android:insetRight="0dp"
                 android:insetBottom="0dp"
-                android:backgroundTint="@color/blue"/>
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button.Circle" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnYellow"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button.Circle"
+                android:backgroundTint="@color/yellow"
                 android:insetLeft="0dp"
-                android:insetRight="0dp"
                 android:insetTop="0dp"
+                android:insetRight="0dp"
                 android:insetBottom="0dp"
-                android:backgroundTint="@color/yellow"/>
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button.Circle" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPurple"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button.Circle"
+                android:backgroundTint="@color/purple"
                 android:insetLeft="0dp"
-                android:insetRight="0dp"
                 android:insetTop="0dp"
+                android:insetRight="0dp"
                 android:insetBottom="0dp"
-                android:backgroundTint="@color/purple"/>
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button.Circle" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPink"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_margin="5dp"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button.Circle"
+                android:backgroundTint="@color/pink"
                 android:insetLeft="0dp"
-                android:insetRight="0dp"
                 android:insetTop="0dp"
+                android:insetRight="0dp"
                 android:insetBottom="0dp"
-                android:backgroundTint="@color/pink"/>
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Button.Circle" />
         </LinearLayout>
 
     </HorizontalScrollView>
