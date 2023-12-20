@@ -9,6 +9,7 @@ import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
@@ -39,6 +40,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var speechRecognizer: SpeechRecognizer
     private lateinit var recognizeListener: Listener
     private var isListening = false
+    private var soundStart: MediaPlayer? = null
+    private var soundStop: MediaPlayer? = null
 
     inner class Listener(private val context: Context) : RecognitionListener{
         override fun onReadyForSpeech(params: Bundle?) {
@@ -59,12 +62,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun onError(error: Int) {
+            soundStop!!.start()
             // 使用者未說話 ..等錯誤
             restoreCommandButtonStyle()
             binding.txtCommand.text = resources.getString(R.string.txt_error_recognize)
         }
 
         override fun onResults(results: Bundle) {
+            soundStop!!.start()
             /*
             / TODO: 優化中文完整語句指令
                 com.huaban.analysis:hanlp-porter => JiebaSegmenter ?
@@ -192,6 +197,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setUpViewComponent()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        soundStart = MediaPlayer.create(this, R.raw.record_start)
+        soundStop = MediaPlayer.create(this, R.raw.record_stop)
     }
 
     private fun setUpViewComponent() {
@@ -363,7 +374,7 @@ class MainActivity : AppCompatActivity() {
         when (requestCode){
             RECORD_AUDIO_REQUEST -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    // TODO:進行錄音相關工作
+                    setUpRecordAudio()
                 }else{
                     binding.txtCommand.text = resources.getString(R.string.txt_record_failed)
                     binding.btnCommand.setOnClickListener {
@@ -383,6 +394,7 @@ class MainActivity : AppCompatActivity() {
         speechRecognizer.setRecognitionListener(recognizeListener)
         binding.txtCommand.text = resources.getString(R.string.txt_result_sound)
         binding.btnCommand.setOnClickListener {
+            soundStart!!.start()
             // 開始聲音辨識
             if (!isListening){
                 isListening = true
@@ -408,5 +420,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun showString(stringValue: Int): String{
         return resources.getString(stringValue)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        soundStart!!.stop()
+        soundStop!!.stop()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        soundStart!!.release()
+        soundStop!!.release()
+        soundStart = null
+        soundStop = null
     }
 }
