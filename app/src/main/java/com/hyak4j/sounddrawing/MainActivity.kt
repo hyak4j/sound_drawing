@@ -324,6 +324,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setEraserMode() {
         // 設為橡皮擦模式
+        binding.scrollview.fullScroll(NestedScrollView.FOCUS_LEFT)
         setModeButtonBorder(binding.btnEraser)
         paintView.changeMode(0)
         paintView.changeColor(R.color.white, applicationContext)
